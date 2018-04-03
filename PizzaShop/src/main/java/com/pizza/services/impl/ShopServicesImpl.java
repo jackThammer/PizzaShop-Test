@@ -9,6 +9,7 @@ import java.util.*;
 import org.springframework.stereotype.Service;
 
 import com.pizza.entity.Order;
+import com.pizza.exception.NotFoundException;
 import com.pizza.repository.ShopRepository;
 import com.pizza.repository.impl.ShopRepositoryImpl;
 import com.pizza.services.ShopServices;
@@ -26,6 +27,11 @@ public class ShopServicesImpl implements ShopServices {
 	public List<String> readFile(String read_path) throws IOException {
 		ShopRepository repository = new ShopRepositoryImpl();
 		List<String> orderList = repository.readTextFile(read_path);
+		
+		if(orderList.isEmpty()) {
+			throw new NotFoundException("PATH INVALID " + read_path);
+		}
+		
 		return orderList;
 	}
 

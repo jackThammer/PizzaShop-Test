@@ -6,10 +6,7 @@ import java.util.UUID;
 public class Order {
 	
 	
-	@Override
-	public String toString() {
-		return "Order [id=" + id + ", name=" + name + ", time=" + time + "]";
-	}
+	
 	private String id;
 	private String name;
 	private String time;
@@ -36,5 +33,9 @@ public class Order {
 	}
 	public void setTime(String time) {
 		this.time = time;
+	}
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", name=" + name + ", time=" + time + "]";
 	}
 }
