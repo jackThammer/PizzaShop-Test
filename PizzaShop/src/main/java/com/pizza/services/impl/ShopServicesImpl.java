@@ -17,11 +17,6 @@ import com.pizza.services.ShopServices;
 @Service
 public class ShopServicesImpl implements ShopServices {
 
-	// private ShopRepository repository;
-	//
-	// public ShopServicesImpl() {
-	// this.repository = new ShopRepositoryImpl();
-	// }
 
 	@Override
 	public List<String> readFile(String read_path) throws IOException {
@@ -40,10 +35,6 @@ public class ShopServicesImpl implements ShopServices {
 		List<Order> order_list = new ArrayList<>();
 		for (String order : original_order) {
 			String[] order_Array = order.trim().split("\\s+");
-			/*
-			 * for (String name : order_Array) { System.out.println("->" + name); }
-			 * System.out.println("-##-");
-			 */
 			Order o = new Order();
 			if (!order_Array[0].equalsIgnoreCase("order")) {
 				o.setName(order_Array[0]);
@@ -73,7 +64,7 @@ public class ShopServicesImpl implements ShopServices {
 
 	@Override
 	public List<Order> changeTime(List<Order> order) {
-		// TODO Auto-generated method stub
+		
 		for (Order o : order) {
 			String time = o.getTime();
 			Date date = new Date(Long.parseLong(time));

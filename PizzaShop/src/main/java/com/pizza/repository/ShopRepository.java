@@ -7,7 +7,6 @@ import com.pizza.entity.Order;
 
 public interface ShopRepository {
 
-	// public Order readTextFile(String read_path);
 	public List<String> readTextFile(String read_path) throws IOException;
 
 	public void writeTextFile(String destination_path, List<Order> sorted_order);
