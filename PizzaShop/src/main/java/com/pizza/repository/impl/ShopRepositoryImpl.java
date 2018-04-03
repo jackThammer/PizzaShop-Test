@@ -4,9 +4,12 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.pizza.entity.Order;
 import com.pizza.repository.ShopRepository;
 
+@Repository
 public class ShopRepositoryImpl implements ShopRepository {
 
 	public List<String> readTextFile(String filename) throws IOException {
@@ -37,7 +40,7 @@ public class ShopRepositoryImpl implements ShopRepository {
 
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fos));
 
-			//writer = new FileWriter(destination_path + "\\output.txt");
+			// writer = new FileWriter(destination_path + "\\output.txt");
 			for (Order order : sorted_order) {
 				writer.write(order.getName());
 				writer.write(" ordered on ");

@@ -6,21 +6,25 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import org.springframework.stereotype.Service;
+
 import com.pizza.entity.Order;
 import com.pizza.repository.ShopRepository;
 import com.pizza.repository.impl.ShopRepositoryImpl;
 import com.pizza.services.ShopServices;
 
+@Service
 public class ShopServicesImpl implements ShopServices {
 
-	private ShopRepository repository;
-
-	public ShopServicesImpl() {
-		this.repository = new ShopRepositoryImpl();
-	}
+	// private ShopRepository repository;
+	//
+	// public ShopServicesImpl() {
+	// this.repository = new ShopRepositoryImpl();
+	// }
 
 	@Override
 	public List<String> readFile(String read_path) throws IOException {
+		ShopRepository repository = new ShopRepositoryImpl();
 		List<String> orderList = repository.readTextFile(read_path);
 		return orderList;
 	}
@@ -56,6 +60,7 @@ public class ShopServicesImpl implements ShopServices {
 
 	@Override
 	public void writeFile(String destination_path, List<Order> sorted_order) {
+		ShopRepository repository = new ShopRepositoryImpl();
 		repository.writeTextFile(destination_path, sorted_order);
 
 	}
@@ -63,15 +68,15 @@ public class ShopServicesImpl implements ShopServices {
 	@Override
 	public List<Order> changeTime(List<Order> order) {
 		// TODO Auto-generated method stub
-		for(Order o : order) {
+		for (Order o : order) {
 			String time = o.getTime();
 			Date date = new Date(Long.parseLong(time));
-	        DateFormat format = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss z");
-	        format.setTimeZone(TimeZone.getTimeZone("Etc/UTC"));
-	        String formatted = format.format(date);
-	        o.setTime(formatted);
+			DateFormat format = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss z");
+			format.setTimeZone(TimeZone.getTimeZone("Etc/UTC"));
+			String formatted = format.format(date);
+			o.setTime(formatted);
 		}
-		
+
 		return order;
 	}
 
